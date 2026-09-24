@@ -32,11 +32,11 @@ def parse_args(args: list):
     narg2 = {}
     for arg in narg:
         if not key in arg:
-            if c > 1:
+            if not c > 1:
                 if not c2[c] in flg:
                     narg2[c2[c]] = arg
+                    c += 1
                     continue
-            c += 1
         narg2[arg.split(key)[0]] = arg.split(key)[1]
     return narg2
 args = parse_args(sys.argv[1:])
