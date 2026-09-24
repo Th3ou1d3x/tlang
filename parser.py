@@ -16,9 +16,9 @@ class parser:
         self.debug = debugFile
         self.debugflag = debugflag
     def parse(self):
-        AST={} # [("KEYWORD", "LET"), ("ARG" "x:"), ("ARG", "String"), ("ARG", "="), ("ARG", ""Hello, World"")]
+        AST={} # [("KEYWORD", "LET"), ("ARG" "x:"), ("ARG", "String"), ("ARG", "="), ("ARG", "\"Hello, World\"")]
                # V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V V
-               # {"let_keyword": {"var_name": "x", "var_type": "String", "var_val": ""Hello, World""}} target
+               # {"let_keyword": {"var_name": "x", "var_type": "String", "var_val": "\"Hello, World\""}} target
         for token in self.tokens:
             continue
         return ast(AST)
