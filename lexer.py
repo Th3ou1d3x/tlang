@@ -25,17 +25,17 @@ class Lex:
         for ln in dat.splitlines():
             state = 0 if state != 2 else state
             for word in shlex.split(ln):
+                if " " in word:
+                    word = "\"" + word.replace("\\", "\\\\").replace("\"", "\\\"") + "\""
                 c += 1
                 if word == "#":
                     if state == 0 or state == 1:
                         state2 = state
                         state = 2
-                        self.tokens.append(("COMMENT", 0))
                         continue
                     else:
                         state = state2
                         state2 = 0
-                        self.tokens.append(("COMMENT", 1))
                         continue
                 if state == 2:
                     continue
