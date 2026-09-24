@@ -8,10 +8,14 @@ class Lex:
             dat = f.read()
         word = ""
         state = 0
-        for char in dat:
-            if char == "\n":
-                word = ""
-                continue
-            word = f"{word}{char}"
-            if word in self.keywords:
-                break
+        c = 0
+        for ln in dat.splitlines():
+            state = 0
+            for word in ln.split():
+                c += 1
+                if word in self.keywords:
+                    self.tokens.append(("KEYWORD", word))
+                    state = 1
+                    continue
+                elif state == 1:
+                    self.tokens.append(("ARG", word))
