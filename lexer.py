@@ -1,5 +1,6 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
+import shlex
 if TYPE_CHECKING:
     from _typeshed import SupportsWrite
 import sys
@@ -19,13 +20,11 @@ class Lex:
     def tokenize(self):
         with open(self.file) as f:
             dat = f.read()
-        word = ""
         state = 0
         c = 0
-        state2 = 0
         for ln in dat.splitlines():
             state = 0 if state != 2 else state
-            for word in ln.split():
+            for word in shlex.split(ln):
                 c += 1
                 if word == "#":
                     if state == 0 or state == 1:
