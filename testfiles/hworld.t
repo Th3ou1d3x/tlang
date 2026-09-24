@@ -3,3 +3,4 @@ $include[std] # include from INSIDE the binary ## $ = compiler flag #
 $entry main
 proc main() -> void:
     std.out("Hello, World!")
+    end

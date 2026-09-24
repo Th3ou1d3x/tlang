@@ -41,16 +41,16 @@ def parse_args(args: list):
     return narg2
 args = parse_args(sys.argv[1:])
 debug = False
-file = ""
+file = None
 if "--debug" in args:
     debug = True
     file = args["--debug"]
 import lexer
-lex = lexer.Lex(args["--input"], debug, file)
+lex = lexer.Lex(args["--input"], file, debug)
 tokens = lex.tokenize()
+print(tokens.tokens)
 import parser
-Parser = parser.parser(tokens, debug, file)
-Parser.parse()
-ast = Parser.getAst()
+Parser = parser.parser(tokens, file, debug)
+ast = Parser.parse()
 import emitter
-Emitter = emitter.emitter(ast, args["--output"], debug, file)
+Emitter = emitter.emitter(ast, args["--output"], file, debug)
