@@ -53,4 +53,5 @@ import parser
 Parser = parser.parser(tokens, file, debug)
 ast = Parser.parse()
 import emitter
-Emitter = emitter.emitter(ast, args["--output"], file, debug)
+Emitter = emitter.emitter(ast, args["--target"], args["--output"], file, debug)
+Emitter.emit()
